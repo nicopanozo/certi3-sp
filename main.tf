@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "origin" {
-  bucket = "example-origin-bucket"
+  bucket = "example-origin-bucket1"
   acl    = "private"
 
   versioning {
@@ -13,8 +13,8 @@ resource "aws_s3_bucket" "origin" {
   replication_configuration {
     role = aws_iam_role.s3_replication.arn
 
-    rule {
-      id      = "example-rule"
+    rules {
+      id      = "example-rule1"
       prefix  = ""
       status  = "Enabled"
 
@@ -33,8 +33,9 @@ resource "aws_s3_bucket" "origin" {
   }
 }
 
+
 resource "aws_s3_bucket" "destination" {
-  bucket = "example-destination-bucket"
+  bucket = "example-destination-bucket1"
   acl    = "private"
 
   versioning {
@@ -63,7 +64,7 @@ data "aws_iam_policy_document" "s3_replication" {
 }
 
 resource "aws_iam_role" "s3_replication" {
-  name = "example-s3-replication-role"
+  name = "example-s3-replication-role1"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
